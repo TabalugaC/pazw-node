@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 
 const app = express();
-const PORT = 3000;
+
 app.set('view engine', 'ejs');
 // Używanie body-parser do przetwarzania danych
 app.use(bodyParser.urlencoded({ extended: true }));
