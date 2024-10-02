@@ -34,9 +34,7 @@ app.post('/submit', (req, res) => {
     
 
 
- //kończenie połączenia
-
-   // res.send(`Imię: ${imie} <br> Nazwisko: ${nazwisko} <br> Email: ${email}   <br> Wiek: ${wiek}`);   //odesłanie danych
+ 
 });
 
 app.get('/submit', (req, res) => {
@@ -63,8 +61,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'form.html'));
 });
 
-// Uruchomienie serwera
 
-app.listen(PORT, () => {
-    console.log(`Serwer działa na http://localhost:${PORT}`);
-});
+
+
