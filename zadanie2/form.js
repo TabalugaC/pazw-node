@@ -40,15 +40,15 @@ app.post('/submit', (req, res) => {
 });
 
 app.get('/submit', (req, res) => {
-    const query = 'SELECT * FROM doform';
+    const query = 'SELECT * FROM uzytkownicy';
     connection.query(query, (err, results) => {
         if (err) {
             console.error('Błąd podczas pobierania danych z bazy:', err);
             res.send('Wystąpił błąd podczas pobierania danych z bazy.');
         } else {
             let html = '<h1>Lista użytkowników</h1><ul>';
-            results.forEach(doform => {
-                html += `<li>Imię: ${doform.imie}, Nazwisko: ${doform.nazwisko}, Email: ${doform.email}, Wiek: ${doform.wiek}</li>`;
+            results.forEach(uzytkownicy => {
+                html += `<li>Imię: ${uzytkownicy.imie}, Nazwisko: ${uzytkownicy.nazwisko}, Email: ${uzytkownicy.email}, Wiek: ${uzytkownicy.wiek}</li>`;
             });
             html += '</ul><a href="/">Wróć do formularza</a>';
             res.send(html);
