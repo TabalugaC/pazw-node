@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname)));
 
 //ustawia ściężke dla pliku formularza
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'form.html'),(err));
+    res.sendFile(path.join(__dirname, 'form.html'));
     
 });
 
@@ -37,7 +37,8 @@ app.post('/submit', (req, res) => {
     const { imie, email, nazwisko, wiek } = req.body;       //pobranie danych formularza
 
 //wysyłanie danych do bazy
-    connection.query('INSERT INTO doform VALUES("'+imie+'","'+nazwisko+'","'+email+'","'+wiek+'");', (error, results) => {
+    const sql = 'INSERT INTO uzytkownicy (imie, nazwisko, email, wiek)VALUES(?,?,?,?);'
+    connection.query(sql,[imie, nazwisko, email, wiek], (error, results) => {
         if (error) {
             return console.error('Błąd przy dodawaniu rekordu: ' + error.message);
         }
@@ -64,7 +65,7 @@ app.get('/submit', (req, res) => {
             results.forEach(uzytkownicy => {
                 html += `<li>Imię: ${uzytkownicy.imie}, Nazwisko: ${uzytkownicy.nazwisko}, Email: ${uzytkownicy.email}, Wiek: ${uzytkownicy.wiek}</li>`;
             });
-            html += '</ul><a href="/">Wróć do formularza</a>';
+            
             res.send(html);
         }
     });
