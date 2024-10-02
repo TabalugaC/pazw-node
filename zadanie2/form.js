@@ -9,11 +9,27 @@ app.set('view engine', 'ejs');
 // Używanie body-parser do przetwarzania danych
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname)));
+
+//ustawia ściężke dla pliku formularza
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'form.html'),(err));
+    
+});
+
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root', 
     password: 'mariadb',  
     database: 'baza'     
+});
+
+connection.connect((err) => {
+    if (err){
+        console.error('Błąd połączenia z bazą danych:',err);
+        return;
+    }
+    console.log('Połączono z bazą danych MariaDB');
 });
 
 // Obsługa formularza
@@ -55,11 +71,11 @@ app.get('/submit', (req, res) => {
 });
 
 
-
-//ustawia ściężke dla pliku formularza
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'form.html'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Serwer działa na porcie ${PORT}`);
 });
+
 
 
 
