@@ -15,7 +15,7 @@
 		3306
 	],
 	"features": {
-		"ghcr.io/devcontainers/features/node:1": {}
+		"ghcr.io/devcontainers/features/node:2": {}
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
